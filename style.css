@@ -1,0 +1,950 @@
+:root {
+    --primary: #0f172a;
+    --accent: #0284c7;
+    --accent-light: #38bdf8;
+    --gold: #f59e0b;
+    --text-dark: #1e293b;
+    --text-muted: #475569;
+    --border: rgba(226, 232, 240, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    color: var(--text-dark);
+    background-color: #f1f5f9;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Kunci scroll pada layar desktop saat tab Profile aktif agar pas 100% layar */
+@media (min-width: 861px) {
+    body.lock-scroll {
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+/* =========================================================
+   PENINGKATAN KETAJAMAN FOTO & BACKGROUND OTOMATIS (HD RENDERING)
+   ========================================================= */
+.hd-media,
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
+    filter: contrast(1.06) saturate(1.08) brightness(1.01);
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* =========================================================
+   NAVBAR DENGAN NUANSA MOTIF BATIK KAWUNG ELEGAN
+   ========================================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    background: linear-gradient(90deg, #0b132b 0%, #0f294a 50%, #0b132b 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 1000;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.45);
+    box-shadow: 0 6px 24px rgba(11, 19, 43, 0.35);
+    overflow: hidden;
+}
+
+.batik-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.16;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fbbf24' stroke-width='1.2'%3E%3Ccircle cx='30' cy='30' r='22'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='60' cy='0' r='22'/%3E%3Ccircle cx='0' cy='60' r='22'/%3E%3Ccircle cx='60' cy='60' r='22'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%2338bdf8' stroke='none'/%3E%3Ccircle cx='30' cy='8' r='2.5' fill='%23fbbf24' stroke='none'/%3E%3Ccircle cx='30' cy='52' r='2.5' fill='%23fbbf24' stroke='none'/%3E%3Ccircle cx='8' cy='30' r='2.5' fill='%23fbbf24' stroke='none'/%3E%3Ccircle cx='52' cy='30' r='2.5' fill='%23fbbf24' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 56px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.nav-links {
+    position: relative;
+    z-index: 2;
+    list-style: none;
+    display: flex;
+    gap: 12px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    font-size: 0.93rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(56, 189, 248, 0.45);
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+    border-color: #7dd3fc;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.45);
+}
+
+/* =========================================================
+   SISTEM HALAMAN DASHBOARD & BACKGROUND + BATIK TIPIS
+   ========================================================= */
+#dashboard-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-page {
+    position: relative;
+    display: none;
+    min-height: calc(100vh - 50px);
+    overflow: hidden;
+}
+
+.dashboard-page.active-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+.page-overlay.dark-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.84) 0%, rgba(12, 74, 110, 0.68) 50%, rgba(15, 23, 42, 0.86) 100%);
+    z-index: 2;
+}
+
+/* Motif Batik Tipis di Background Profil (Tidak Mengganggu Foto Asli) */
+.page-overlay.dark-gradient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fbbf24' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='22'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='60' cy='0' r='22'/%3E%3Ccircle cx='0' cy='60' r='22'/%3E%3Ccircle cx='60' cy='60' r='22'/%3E%3Ccircle cx='30' cy='30' r='3.5' fill='%2338bdf8' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 76px 76px;
+    pointer-events: none;
+}
+
+/* Lapisan Hitam Transparan (Background Foto Terlihat Samar & Elegan) */
+.page-overlay.light-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 19, 43, 0.72) 0%, rgba(15, 23, 42, 0.62) 50%, rgba(11, 19, 43, 0.78) 100%);
+    z-index: 2;
+}
+
+/* Motif Batik Tipis Emas Samar di Atas Latar Hitam Transparan */
+.page-overlay.light-gradient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fbbf24' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='22'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='60' cy='0' r='22'/%3E%3Ccircle cx='0' cy='60' r='22'/%3E%3Ccircle cx='60' cy='60' r='22'/%3E%3Ccircle cx='30' cy='30' r='3.5' fill='%2338bdf8' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 76px 76px;
+    pointer-events: none;
+}
+
+.relative-z {
+    position: relative;
+    z-index: 3;
+}
+
+/* Panel Kaca Hitam Transparan (Dark Glassmorphism) */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+    color: #f1f5f9;
+}
+
+.white-frame {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0;
+}
+
+.active-page .anim-item {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+    animation: dashboardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes dashboardEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================================
+   1. HERO SECTION — PAS 1 LAYAR LAPTOP TERMASUK FRAME BAWAH
+   ========================================================= */
+.hero {
+    height: calc(100vh - 50px);
+    width: 100%;
+    align-items: center;
+    padding: 64px 7% 0 7%;
+    background-color: #0f172a;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 3;
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    width: 100%;
+}
+
+.hero-left {
+    flex-shrink: 0;
+}
+
+.profile-frame {
+    width: 215px;
+    height: 215px;
+    border-radius: 24px;
+    padding: 6px;
+    background: linear-gradient(135deg, #38bdf8, #0284c7, #fbbf24);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 19px;
+    background: #ffffff;
+}
+
+.hero-right {
+    flex: 1;
+    color: #ffffff;
+}
+
+.greeting-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.22), rgba(245, 158, 11, 0.2));
+    color: var(--accent-light);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.hero-right h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 14px;
+}
+
+.bio-card {
+    background: rgba(15, 23, 42, 0.68);
+    border-left: 4px solid var(--accent-light);
+    padding: 13px 18px;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 14px;
+    backdrop-filter: blur(8px);
+}
+
+.bio-card p {
+    color: #f1f5f9;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.skill-tags span {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn {
+    padding: 9px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(56, 189, 248, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(56, 189, 248, 0.55);
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   SECTION DASHBOARD KONTEN & KOTAK JUDUL BATIK + DEGRADASI BIRU
+   ========================================================= */
+.section {
+    padding: 95px 7% 65px 7%;
+    justify-content: flex-start !important;
+    background-color: #e2e8f0;
+}
+
+.container {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Kotak Judul Dark Navy Batik — Serasi dengan Navbar & Header Kartu */
+/* KAPSUL KACA BURAM HITAM TRANSPARAN + DUA TITIK EMAS */
+.section-header.batik-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: fit-content;
+    max-width: 92%;
+    margin: 0 auto 28px auto;
+    background: rgba(15, 23, 42, 0.65); /* Hitam transparan kaca buram */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px 36px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Pola Batik Tipis di Dalam Kapsul */
+.section-header.batik-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.09;
+    background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fbbf24' stroke-width='1.2'%3E%3Ccircle cx='30' cy='30' r='22'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='60' cy='0' r='22'/%3E%3Ccircle cx='0' cy='60' r='22'/%3E%3Ccircle cx='60' cy='60' r='22'/%3E%3Ccircle cx='30' cy='30' r='4.5' fill='%2338bdf8' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 46px 46px;
+    pointer-events: none;
+}
+
+/* Aksen Titik Emas di Sisi Kanan */
+.section-header.batik-header::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fbbf24;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.9);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+/* Teks Judul Putih Bersih Tajam di Atas Kaca Hitam */
+.blue-main-title {
+    position: relative;
+    z-index: 2;
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+/* Aksen Titik Emas di Sisi Kiri Teks */
+.blue-main-title::before {
+    content: "";
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fbbf24;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.9);
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+/* Tulisan Judul Biru Tua (#0369a1) Tajam Mengambang di Atas Kaca */
+.blue-main-title {
+    position: relative;
+    z-index: 2;
+    font-size: 2.15rem;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    color: #0369a1;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+}
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.09;
+    background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230284c7' stroke-width='1.3'%3E%3Ccircle cx='30' cy='30' r='22'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='60' cy='0' r='22'/%3E%3Ccircle cx='0' cy='60' r='22'/%3E%3Ccircle cx='60' cy='60' r='22'/%3E%3Ccircle cx='30' cy='30' r='4.5' fill='%230369a1' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 48px 48px;
+    pointer-events: none;
+}
+
+/* Hanya Tulisan Biru Besar yang Ditampilkan */
+.blue-main-title {
+    position: relative;
+    z-index: 2;
+    font-size: 2.15rem;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    background: linear-gradient(90deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   2. EDUCATION
+   ========================================================= */
+.edu-summary-card {
+    border-radius: 16px;
+    padding: 28px 34px;
+    margin-bottom: 30px;
+}
+
+.edu-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.edu-top-row h3 {
+    font-size: 1.55rem;
+    color: var(--primary);
+    margin-bottom: 2px;
+}
+
+.edu-degree {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.02rem;
+}
+
+.edu-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pill-year {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    color: #0369a1;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.pill-gpa {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #b45309;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.edu-desc {
+    color: var(--text-dark);
+    font-size: 0.96rem;
+    line-height: 1.65;
+}
+
+.edu-docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+    gap: 28px;
+}
+
+.doc-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.doc-header {
+    padding: 15px 22px;
+    background: linear-gradient(90deg, #0f172a 0%, #0369a1 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doc-header h4 {
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.doc-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.16);
+    color: #e0f2fe;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.doc-slider {
+    height: 360px !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* =========================================================
+   3. SLIDER PUTIH BERSIH (EDUCATION & SERTIFIKASI)
+   ========================================================= */
+.auto-slider {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+.large-slider {
+    max-width: 860px;
+    height: 440px;
+    margin: 0 auto 35px auto;
+}
+
+.slides, .slides .slide {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.slides .slide {
+    display: none;
+    padding: 12px;
+    animation: photoZoomFade 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slides .slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slides .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+@keyframes photoZoomFade {
+    from { opacity: 0; transform: scale(1.03); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.75);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    z-index: 10;
+    transition: background 0.2s;
+}
+
+.nav-btn:hover { background: var(--accent); }
+.prev { left: 14px; }
+.next { right: 14px; }
+
+.cert-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.cert-item {
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.c-year {
+    display: inline-block;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #b45309;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.cert-item h4 {
+    color: var(--primary);
+    font-size: 1.02rem;
+    margin-bottom: 4px;
+}
+
+.cert-item p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* =========================================================
+   4, 5, 6. KARTU LANDSCAPE (WORK EXPERIENCE, PROJECTS, INTERNSHIP)
+   ========================================================= */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 32px;
+}
+
+.modern-card {
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+}
+
+.landscape-media {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.card-media .main-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    cursor: zoom-in;
+    transition: opacity 0.45s ease, transform 0.5s ease;
+}
+
+.card-media .main-photo.photo-switching {
+    opacity: 0.25;
+    transform: scale(1.04);
+}
+
+.photo-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.38) 45%, rgba(15, 23, 42, 0.02) 100%);
+    pointer-events: none;
+}
+
+.status-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(3, 105, 161, 0.9) 100%);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    z-index: 5;
+}
+
+.media-overlay-title {
+    position: absolute;
+    bottom: 14px;
+    left: 20px;
+    right: 20px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.loc-text {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fde047;
+    margin-bottom: 2px;
+}
+
+.media-overlay-title h3 {
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.thumb-strip {
+    display: flex;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #ffffff;
+    overflow-x: auto;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.thumb-strip:empty {
+    display: none;
+}
+
+.thumb-strip img {
+    width: 72px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.65;
+    border: 2px solid #cbd5e1;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.thumb-strip img:hover,
+.thumb-strip img.active-thumb {
+    opacity: 1;
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 22px 24px 26px 24px;
+    flex: 1;
+}
+
+.job-title {
+    color: var(--accent);
+    font-size: 1.04rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.clean-list {
+    padding-left: 18px;
+    color: var(--text-dark);
+    font-size: 0.94rem;
+}
+
+.clean-list li {
+    margin-bottom: 8px;
+}
+
+.clean-para {
+    color: var(--text-dark);
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+/* LIGHTBOX POPUP FULLSCREEN */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.94);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    cursor: zoom-out;
+}
+
+.lightbox img {
+    max-width: 92%;
+    max-height: 90%;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+/* FOOTER BINGKAI BAWAH NUANSA BATIK */
+footer {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #0b132b 0%, #0f294a 50%, #0b132b 100%);
+    color: #cbd5e1;
+    text-align: center;
+    padding: 0 20px;
+    font-size: 0.88rem;
+    border-top: 2px solid rgba(245, 158, 11, 0.45);
+    z-index: 10;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* RESPONSIVE HP / TABLET */
+@media (max-width: 860px) {
+    .navbar { padding: 0 3%; overflow-x: auto; justify-content: flex-start; }
+    .nav-links { gap: 6px; width: 100%; justify-content: space-between; }
+    .tab-btn { font-size: 0.8rem; padding: 7px 11px; white-space: nowrap; }
+    .hero { height: auto; min-height: calc(100vh - 50px); padding: 90px 6% 40px 6%; }
+    .hero-container { flex-direction: column; text-align: center; gap: 24px; }
+    .profile-frame { width: 175px; height: 175px; }
+    .hero-right h1 { font-size: 1.95rem; }
+    .bio-card { border-left: none; border-top: 4px solid var(--accent-light); border-radius: 0 0 10px 10px; }
+    .skill-tags, .contact-links { justify-content: center; }
+    .blue-main-title { font-size: 1.55rem; letter-spacing: 1.5px; }
+    .showcase-grid, .edu-docs-grid { grid-template-columns: 1fr; }
+    .landscape-media { height: 240px; }
+    .large-slider { height: 320px; }
+}
+/* Penyesuaian Warna Teks di Atas Kartu Hitam Transparan */
+.edu-top-row {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.edu-top-row h3,
+.cert-item h4 {
+    color: #ffffff;
+}
+
+.edu-degree,
+.job-title {
+    color: #38bdf8;
+}
+
+.job-title {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.edu-desc,
+.cert-item p,
+.clean-list,
+.clean-para {
+    color: #e2e8f0;
+}
+
+.clean-list strong {
+    color: #ffffff;
+}
+
+.thumb-strip {
+    background: rgba(15, 23, 42, 0.9);
+    border-top-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+/* PAKSA TULISAN JUDUL & MENU MENJADI PUTIH BERSIH */
+.section-header.batik-header .blue-main-title,
+.blue-main-title {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: none !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65) !important;
+}
+
+.navbar .tab-btn {
+    color: #ffffff !important;
+}

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Muhammad Jundulloh Ali, S.T.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="lock-scroll">
+
+    <!-- NAVIGASI DASHBOARD (BAHASA INGGRIS KONSISTEN + BATIK) -->
+    <nav class="navbar">
+        <div class="batik-pattern"></div>
+        <ul class="nav-links">
+            <li><button class="tab-btn active" data-target="profil">Profile</button></li>
+            <li><button class="tab-btn" data-target="education">Education</button></li>
+            <li><button class="tab-btn" data-target="sertifikasi">Certifications</button></li>
+            <li><button class="tab-btn" data-target="experience">Work Experience</button></li>
+            <li><button class="tab-btn" data-target="projects">Projects</button></li>
+            <li><button class="tab-btn" data-target="internship">Internship</button></li>
+        </ul>
+    </nav>
+
+    <main id="dashboard-wrapper">
+        <!-- =========================================================
+             DASHBOARD 1: PROFILE (PAS 1 LAYAR LAPTOP + FOOTER TERLIHAT)
+             ========================================================= -->
+        <section id="profil" class="dashboard-page active-page hero" data-bg="images/backgrounds/profil.jpg">
+            <div class="page-bg hd-media"></div>
+            <div class="page-overlay dark-gradient"></div>
+            
+            <div class="hero-container">
+                <div class="hero-left anim-item" style="--delay: 0.1s;">
+                    <div class="profile-frame">
+                        <img src="images/profil.jpg" alt="Muhammad Jundulloh Ali" class="profile-pic hd-media">
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <span class="greeting-badge anim-item" style="--delay: 0.15s;">PORTFOLIO & CURRICULUM VITAE</span>
+                    <h1 class="anim-item" style="--delay: 0.25s;">Muhammad Jundulloh Ali, S.T.</h1>
+                    <h2 class="subtitle anim-item" style="--delay: 0.35s;">Energy Systems Engineering | Fleet Management & Industrial Maintenance</h2>
+                    
+                    <div class="bio-card anim-item" style="--delay: 0.45s;">
+                        <p>
+                            Lulusan Teknik Sistem Energi (ITERA) dengan pengalaman lapangan di bidang <strong>teknologi pertambangan (Fleet Management System)</strong>, <strong>pemeliharaan sistem kelistrikan industri</strong>, <strong>sistem energi terbarukan (PLTS & Panas Bumi)</strong>, serta <strong>analisis data</strong>. Teruji bekerja dalam tim lintas fungsi untuk menyelesaikan masalah operasional.
+                        </p>
+                    </div>
+
+                    <div class="skill-tags anim-item" style="--delay: 0.55s;">
+                        <span>Fleet Management System</span>
+                        <span>Electrical Troubleshooting</span>
+                        <span>Solar PV & Geothermal</span>
+                        <span>AutoCAD & PVsyst</span>
+                        <span>Helioscope</span>
+                        <span>Python & Data Analysis</span>
+                        
+                    </div>
+
+                    <div class="contact-links anim-item" style="--delay: 0.65s;">
+                        <a href="https://wa.me/6281272171083" target="_blank" class="btn btn-primary">WhatsApp</a>
+                        <a href="https://www.linkedin.com/in/mjundullohali" target="_blank" class="btn btn-outline">LinkedIn</a>
+                        <a href="mailto:muhammadjundullohali@gmail.com" class="btn btn-outline">Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             DASHBOARD 2: EDUCATION
+             ========================================================= -->
+        <section id="education" class="dashboard-page section" data-bg="images/backgrounds/education.jpg">
+            <div class="page-bg hd-media"></div>
+            <div class="page-overlay light-gradient"></div>
+
+            <div class="container relative-z">
+                <div class="section-header batik-header anim-item" style="--delay: 0.1s;">
+                    <h2 class="blue-main-title">EDUCATION</h2>
+                </div>
+
+                <!-- Keterangan Akademik (Isi Bahasa Indonesia) -->
+                <div class="edu-summary-card glass-panel anim-item" style="--delay: 0.22s;">
+                    <div class="edu-top-row">
+                        <div>
+                            <h3>Institut Teknologi Sumatera (ITERA)</h3>
+                            <p class="edu-degree">Sarjana Teknik (S.T.) — Program Studi Teknik Sistem Energi</p>
+                        </div>
+                        <div class="edu-badges">
+                            <span class="pill-year">Lulus: 31 Juli 2025</span>
+                            <span class="pill-gpa">IPK: 3.41 / 4.00</span>
+                        </div>
+                    </div>
+                    <p class="edu-desc">
+                        Mendalami perancangan sistem kelistrikan industri, pembangkit energi baru terbarukan (PLTS & Geothermal), konversi energi, serta pemodelan dan analisis data energi.
+                    </p>
+                </div>
+
+                <!-- File Ijazah & Transkrip Nilai -->
+                <div class="edu-docs-grid anim-item" style="--delay: 0.36s;">
+                    <div class="doc-card glass-panel">
+                        <div class="doc-header">
+                            <h4>Bachelor's Degree Certificate (Ijazah)</h4>
+                            <span class="doc-badge">Official Document</span>
+                        </div>
+                        <div class="auto-slider doc-slider white-frame" data-folder="images/ijazah">
+                            <div class="slides"></div>
+                            <button class="nav-btn prev">&#10094;</button>
+                            <button class="nav-btn next">&#10095;</button>
+                        </div>
+                    </div>
+
+                    <div class="doc-card glass-panel">
+                        <div class="doc-header">
+                            <h4>Academic Transcript (Transkrip Nilai)</h4>
+                            <span class="doc-badge">Official Document</span>
+                        </div>
+                        <div class="auto-slider doc-slider white-frame" data-folder="images/transkrip">
+                            <div class="slides"></div>
+                            <button class="nav-btn prev">&#10094;</button>
+                            <button class="nav-btn next">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             DASHBOARD 3: CERTIFICATIONS
+             ========================================================= -->
+        <section id="sertifikasi" class="dashboard-page section" data-bg="images/backgrounds/sertifikasi.jpg">
+            <div class="page-bg hd-media"></div>
+            <div class="page-overlay light-gradient"></div>
+
+            <div class="container relative-z">
+                <div class="section-header batik-header anim-item" style="--delay: 0.1s;">
+                    <h2 class="blue-main-title">CERTIFICATIONS & COMPETENCY</h2>
+                </div>
+
+                <div class="cert-showcase">
+                    <div class="auto-slider large-slider white-frame anim-item" style="--delay: 0.2s;" data-folder="images/sertifikasi">
+                        <div class="slides"></div>
+                        <button class="nav-btn prev">&#10094;</button>
+                        <button class="nav-btn next">&#10095;</button>
+                    </div>
+
+                    <div class="cert-list-grid">
+                        <div class="cert-item glass-panel anim-item" style="--delay: 0.35s;">
+                            <span class="c-year">2024</span>
+                            <h4>PPSDM KEBTKE - Kementerian ESDM</h4>
+                            <p>Pelatihan Teknis Sistem Energi Baru & Terbarukan (Gerilya Academy)</p>
+                        </div>
+                        <div class="cert-item glass-panel anim-item" style="--delay: 0.45s;">
+                            <span class="c-year">2024</span>
+                            <h4>Laboratory Assistant (ITERA)</h4>
+                            <p>Asisten Praktikum Perancangan PLTS (PVsyst & Helioscope)</p>
+                        </div>
+                        <div class="cert-item glass-panel anim-item" style="--delay: 0.55s;">
+                            <span class="c-year">2021</span>
+                            <h4>Uji Kompetensi Otomotif (Bridgestone)</h4>
+                            <p>Diagnostik Kelistrikan & Sistem Transmisi Kendaraan Ringan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             DASHBOARD 4: WORK EXPERIENCE
+             ========================================================= -->
+        <section id="experience" class="dashboard-page section" data-bg="images/backgrounds/kerja.jpg">
+            <div class="page-bg hd-media"></div>
+            <div class="page-overlay light-gradient"></div>
+
+            <div class="container relative-z">
+                <div class="section-header batik-header anim-item" style="--delay: 0.1s;">
+                    <h2 class="blue-main-title">WORK EXPERIENCE</h2>
+                </div>
+
+                <div class="showcase-grid">
+                    <!-- KERJA 1 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.25s;" data-folder="images/kerja1">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="PT Masa Robot Solusi">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Mar 2026 - Present</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 Central & East Halmahera</span>
+                                <h3>PT Masa Robot Solusi</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Forward Deployed Engineer - Fleet Management System</h4>
+                            <ul class="clean-list">
+                                <li>Instalasi dan deployment dashcam serta Fleet Management System pada <strong>150 dump truck</strong> dan <strong>29 excavator</strong> di site pertambangan PT MAI & PT BSA (Halmahera Tengah).</li>
+                                <li>Melakukan troubleshooting dan preventive maintenance pada hardware dan software<strong>200 unit di PT MSM</strong> & <strong>71 unit di PT TMI (Halmahera tengah)</strong>.</li>
+                                <li>Konfigurasi parameter sistem, integrasi batas boundary unit, serta penyelesaian kendala GPS dan konektivitas perangkat secara real-time di lapangan.</li>
+                                <li>Berkoordinasi dengan tim HO dan client untuk keberlangsungan project.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- KERJA 2 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.4s;" data-folder="images/kerja2">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="Mayora Indah Tbk">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Okt 2025 - Feb 2026</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 Tangerang, Banten</span>
+                                <h3>PT Mayora Indah Tbk</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Unit Head Engineering</h4>
+                            <ul class="clean-list">
+                                <li>Melaksanakan troubleshooting kelistrikan dan hardware pada mesin produksi serta sistem utilitas pabrik.</li>
+                                <li>Menjalankan <em>preventive, corrective, predictive, dan autonomous maintenance</em> pada motor listrik, panel distribusi, sistem proteksi, dan sensor industri.</li>
+                                <li>Menganalisis akar masalah kerusakan mesin (<em>Root Cause Analysis</em>) dan berkoordinasi dengan tim produksi untuk meminimalkan downtime.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             DASHBOARD 5: PROJECTS
+             ========================================================= -->
+        <section id="projects" class="dashboard-page section" data-bg="images/backgrounds/proyek.jpg">
+            <div class="page-bg hd-media"></div>
+            <div class="page-overlay light-gradient"></div>
+
+            <div class="container relative-z">
+                <div class="section-header batik-header anim-item" style="--delay: 0.1s;">
+                    <h2 class="blue-main-title">ENGINEERING PROJECTS</h2>
+                </div>
+
+                <div class="showcase-grid">
+                    <!-- PROJECT 1 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.2s;" data-folder="images/proyek1">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="Pertamina Geothermal Energy">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Juli 2025</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 Tanggamus, Lampung</span>
+                                <h3>Project 1: Pertamina Geothermal Energy</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Electrical Drafter - EV Charging System (3x7 kW & 2x11 kW)</h4>
+                            <ul class="clean-list">
+                                <li>Survei lapangan untuk memvalidasi BOQ sebelum eksekusi proyek.</li>
+                                <li>Merancang gambar teknik AutoCAD (SLD, panel distribusi, dan jalur kabel).</li>
+                                <li>Instalasi kelistrikan unit EV Charger serta penyusunan dokumen BOQ, S-Curve, JSA, SOP, dan commissioning.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 2 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.35s;" data-folder="images/proyek2">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="Rooftop Solar PV 394 kWp">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Mar - Jul 2024</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 Jakarta Selatan</span>
+                                <h3>Project 2: Rooftop Solar PV 394 kWp</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Project Supervisor - PT ATW Solar Indonesia</h4>
+                            <ul class="clean-list">
+                                <li>Supervisi pemasangan sistem PLTS atap kapasitas 394 kWp pada fasilitas pembangkit industri.</li>
+                                <li>Pengawasan kualitas instalasi, K3, wiring diagram, serta kesesuaian standar SOP.</li>
+                                <li>Penyusunan dokumen BOQ, S-Curve, JSA, FAT, hingga pre-commissioning & commissioning.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 3 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.5s;" data-folder="images/proyek3">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="Geothermal Modeling">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Sept - Des 2024</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 Jakarta Timur</span>
+                                <h3>Project 3: Geothermal Data & ML</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">STUDITHERMAL - Resource & Reserve Assessment</h4>
+                            <ul class="clean-list">
+                                <li>Implementasi Machine Learning untuk pengolahan data panas bumi dan database terintegrasi.</li>
+                                <li>Analisis <em>well log</em>, <em>well targeting</em>, dan evaluasi performa pengeboran sumur.</li>
+                                <li>Pemodelan konseptual, estimasi cadangan energi, dan kelayakan finansial proyek.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             DASHBOARD 6: INTERNSHIP
+             ========================================================= -->
+        <section id="internship" class="dashboard-page section" data-bg="images/backgrounds/intern.jpg">
+            <div class="page-bg hd-media"></div>
+            <div class="page-overlay light-gradient"></div>
+
+            <div class="container relative-z">
+                <div class="section-header batik-header anim-item" style="--delay: 0.1s;">
+                    <h2 class="blue-main-title">INTERNSHIP EXPERIENCE</h2>
+                </div>
+
+                <div class="showcase-grid">
+                    <!-- INTERN 1 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.2s;" data-folder="images/intern1">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="PT Anugerah Indonesia Lima">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Sept - Des 2024</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 MSIB Batch 7</span>
+                                <h3>Intern 1: PT Anugerah Indonesia Lima</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Intern Data Analyst (AILIMA)</h4>
+                            <p class="clean-para">
+                                Mengolah dan memodelkan data energi panas bumi berbasis Machine Learning, manajemen database terintegrasi, analisis target sumur, serta penyusunan laporan rekomendasi proyek strategis.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- INTERN 2 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.35s;" data-folder="images/intern2">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="PT ATW Solar Indonesia">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Mar - Jul 2024</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 Jakarta Selatan</span>
+                                <h3>Intern 2: PT ATW Solar Indonesia</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Intern Project Supervisor (PLTS Atap 394 kWp)</h4>
+                            <p class="clean-para">
+                                Mengawasi instalasi sistem PLTS atap skala industri, memastikan kepatuhan K3 dan standar kelistrikan, menyusun dokumen teknis proyek, serta koordinasi pengujian komisioning.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- INTERN 3 -->
+                    <article class="modern-card glass-panel anim-item" style="--delay: 0.5s;" data-folder="images/intern3">
+                        <div class="card-media landscape-media white-frame">
+                            <img class="main-photo hd-media" alt="Kementerian ESDM">
+                            <div class="photo-fade"></div>
+                            <span class="status-badge">Feb - Jun 2024</span>
+                            <div class="media-overlay-title">
+                                <span class="loc-text">📍 MSIB Batch 6</span>
+                                <h3>Intern 3: Kementerian ESDM</h3>
+                            </div>
+                        </div>
+                        <div class="thumb-strip"></div>
+                        <div class="card-content">
+                            <h4 class="job-title">Intern of Gerilya Academy Batch 6</h4>
+                            <p class="clean-para">
+                                Menyusun analisis proyek energi terbarukan strategis yang selaras dengan kebijakan nasional menuju Net Zero Emission (NZE) 2060 pada aspek keteknikan, komersial, dan O&M pembangkit EBT.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- POPUP FULLSCREEN SAAT FOTO DIKLIK -->
+    <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" class="hd-media" src="" alt="Preview Foto Penuh">
+    </div>
+
+    <footer>
+        <div class="batik-pattern"></div>
+        <p style="position:relative; z-index:2;">&copy; 2026 Muhammad Jundulloh Ali, S.T. — Energy Systems Engineering Portfolio</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
